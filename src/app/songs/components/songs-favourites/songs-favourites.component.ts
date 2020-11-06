@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '../../../store';
 import { filter, map } from 'rxjs/operators';
+import { Song } from '../models/song.model';
 
 @Component({
     selector: 'songs-favourites',
@@ -9,7 +10,7 @@ import { filter, map } from 'rxjs/operators';
     styleUrls: ['./songs-favourites.component.scss']
 })
 export class SongsFavouritesComponent implements OnInit {
-    favourites$: Observable<any[]>;
+    favourites$: Observable<Song[]>;
 
     constructor(private store: Store) { }
 
