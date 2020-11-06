@@ -2,13 +2,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { Store } from './store';
+import { SongsModule } from './songs/songs/songs.module';
 
 @NgModule({
     declarations: [
         AppComponent
     ],
     imports: [
-        BrowserModule
+        BrowserModule,
+        SongsModule
     ],
     providers: [
         Store
