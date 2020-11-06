@@ -80,7 +80,7 @@ app-root {
     display: block;
 }
 
-div {
+app-root > div {
     color: white;
     display: flex;
     justify-content: center;

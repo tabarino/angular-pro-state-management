@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Store } from '../../../store';
 
 @Component({
@@ -7,8 +8,11 @@ import { Store } from '../../../store';
     styleUrls: ['./songs-favourites.component.scss']
 })
 export class SongsFavouritesComponent implements OnInit {
+    favourites$: Observable<any[]>;
+
     constructor(private store: Store) { }
 
     ngOnInit(): void {
+        this.favourites$ = this.store.select('playlist');
     }
 }
