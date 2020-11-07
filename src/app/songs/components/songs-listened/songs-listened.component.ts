@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { Store } from '../../../store';
 import { Song } from '../models/song.model';
+import { SongsService } from '../../services/songs.service';
 
 @Component({
     selector: 'songs-listened',
@@ -12,12 +13,19 @@ import { Song } from '../models/song.model';
 export class SongsListenedComponent implements OnInit {
     listened$: Observable<Song[]>;
 
-    constructor(private store: Store) { }
+    constructor(
+        private store: Store,
+        private songsService: SongsService
+    ) { }
 
     ngOnInit(): void {
         this.listened$ = this.store.select('playlist').pipe(
             filter(Boolean),
             map((playlist: any[]) => playlist.filter(track => track.listened))
         );
+    }
+
+    onToggle(event: any) {
+        this.songsService.toggle(event);
     }
 }

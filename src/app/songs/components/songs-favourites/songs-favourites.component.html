@@ -1,5 +1,5 @@
 <div class="songs">
-    <songs-list [list]="favourites$ | async">
+    <songs-list [list]="favourites$ | async" (toggle)="onToggle($event)">
         <h1>Favourites</h1>
     </songs-list>
 </div>

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Store } from '../../../store';
 import { filter, map } from 'rxjs/operators';
+import { Store } from '../../../store';
 import { Song } from '../models/song.model';
+import { SongsService } from '../../services/songs.service';
 
 @Component({
     selector: 'songs-favourites',
@@ -12,12 +13,19 @@ import { Song } from '../models/song.model';
 export class SongsFavouritesComponent implements OnInit {
     favourites$: Observable<Song[]>;
 
-    constructor(private store: Store) { }
+    constructor(
+        private store: Store,
+        private songsService: SongsService
+    ) { }
 
     ngOnInit(): void {
         this.favourites$ = this.store.select('playlist').pipe(
             filter(Boolean),
             map((playlist: any[]) => playlist.filter(track => track.favourite))
         );
+    }
+
+    onToggle(event: any) {
+        this.songsService.toggle(event);
     }
 }

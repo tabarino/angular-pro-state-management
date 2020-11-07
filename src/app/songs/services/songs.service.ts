@@ -18,4 +18,8 @@ export class SongsService {
         private http: HttpClient,
         private store: Store
     ) { }
+
+    toggle(event: any) {
+        console.log(event);
+    }
 }

@@ -1,6 +1,6 @@
 import * as express from 'express';
 import { Application } from 'express';
-import { getPlaylists } from './server/get-data.route';
+import { getPlaylists } from './get-data.route';
 
 const bodyParser = require('body-parser');
 const app: Application = express();
