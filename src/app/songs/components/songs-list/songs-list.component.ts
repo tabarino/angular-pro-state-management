@@ -1,8 +1,9 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Song } from '../models/song.model';
 
 @Component({
     selector: 'songs-list',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './songs-list.component.html',
     styleUrls: ['./songs-list.component.scss']
 })

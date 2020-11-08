@@ -8,7 +8,7 @@ import { Song } from '../components/models/song.model';
 
 @Injectable()
 export class SongsService {
-    getPlaylist$: Observable<Song[]> = this.http.get<Song[]>('/api/playlists').pipe(
+    getPlaylist$: Observable<Song[]> = this.http.get<Song[]>('/api/playlist').pipe(
         map(snaps => convertSnaps<any>(snaps)),
         tap(next => this.store.set('playlist', next)),
         catchError(error => throwError(error))
@@ -20,6 +20,21 @@ export class SongsService {
     ) { }
 
     toggle(event: any) {
-        console.log(event);
+        this.http.put(`/api/playlist/${ event.track.id }`, event.track)
+            .subscribe((track: Song) => {
+                const playlist = this.store.value.playlist;
+                const newPlaylist = playlist.map((song: Song) => {
+                    if (track.id === song.id) {
+                        return {
+                            ...song,
+                            ...track
+                        };
+                    } else {
+                        return song;
+                    }
+                });
+
+                this.store.set('playlist', newPlaylist);
+            });
     }
 }
